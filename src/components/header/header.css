@@ -1,0 +1,8 @@
+.add_container {
+  margin: 20px;
+}
+.add_container button {
+  width: 200px;
+  margin: 10px;
+  padding: 10px;
+}
