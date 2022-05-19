@@ -13,6 +13,9 @@
   padding: 24px;
   border-radius: 12px;
   background-color: white;
-  height: 200px;
+  max-height: 300px;
   width: 400px;
+}
+.valid {
+  color: red;
 }

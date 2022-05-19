@@ -1,0 +1,43 @@
+.container_item {
+  border: 1px solid gray;
+  margin: 5px;
+  padding: 6px 6px;
+  position: relative;
+}
+.p_task {
+  text-align: left;
+  color: green;
+}
+.p_close {
+  position: absolute;
+  right: 10px;
+  top: -15px;
+  color: green;
+}
+.p_close:hover {
+  color: red;
+  cursor: pointer;
+}
+.edit_title {
+  margin-top: 5px;
+  display: flex;
+  justify-content: space-between;
+  color: green;
+}
+.edit_p:hover {
+  color: red;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.edit_task_div {
+  width: 250px;
+  max-height: 150px;
+  border: 1px solid #d1cbcb;
+  margin-top: 15px;
+  padding: 6px 12px;
+}
+.edit_span:hover {
+  color: green;
+  cursor: pointer;
+  text-decoration: underline;
+}

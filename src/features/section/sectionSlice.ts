@@ -10,13 +10,37 @@ export const sectionSlice = createSlice({
   name: 'selectors',
   initialState,
   reducers: {
+    //reducers for sections
     addSection: (state: ISectionState, action: IPayload) => {
       state.sections = [
         ...state.sections,
         { section: action.payload.title, tasks: [] },
       ]
     },
-    addSectionWithIndex: (state: ISectionState, action: IPayload) => {
+    removeSectionWithIndex: (state: ISectionState, action: IPayload) => {
+      state.sections = state.sections.filter(
+        (section) => section.section !== action.payload.currentSectionName,
+      )
+    },
+
+    //reducers for tasks
+    addTask: (state: ISectionState, action: IPayload) => {
+      state.sections = state.sections.map((section, index) =>
+        index === 0
+          ? {
+              ...section,
+              tasks: [
+                ...section.tasks,
+                {
+                  title: action.payload.title,
+                  description: action.payload.description,
+                },
+              ],
+            }
+          : { ...section },
+      )
+    },
+    addTaskWithIndex: (state: ISectionState, action: IPayload) => {
       state.sections = state.sections.map((section, index) =>
         section.section === action.payload.sectionName
           ? {
@@ -44,23 +68,18 @@ export const sectionSlice = createSlice({
           : { ...section },
       )
     },
-    removeSectionWithIndex: (state: ISectionState, action: IPayload) => {
-      state.sections = state.sections.filter(
-        (section) => section.section !== action.payload.currentSectionName,
-      )
-    },
-    addTask: (state: ISectionState, action: IPayload) => {
+
+    //reducers for edit task
+    changeTitleTask: (state: ISectionState, action: IPayload) => {
       state.sections = state.sections.map((section, index) =>
-        index === 0
+        section.section === action.payload.sectionName
           ? {
               ...section,
-              tasks: [
-                ...section.tasks,
-                {
-                  title: action.payload.title,
-                  description: action.payload.description,
-                },
-              ],
+              tasks: section.tasks.map((item) =>
+                item.title === action.payload.task.title
+                  ? { ...item, title: action.payload.newTitle }
+                  : { ...item },
+              ),
             }
           : { ...section },
       )
@@ -71,9 +90,10 @@ export const sectionSlice = createSlice({
 export const {
   addSection,
   addTask,
-  addSectionWithIndex,
+  addTaskWithIndex,
   removeTaskWithIndex,
   removeSectionWithIndex,
+  changeTitleTask,
 } = sectionSlice.actions
 
 export const selectCount = (state: RootState) => state

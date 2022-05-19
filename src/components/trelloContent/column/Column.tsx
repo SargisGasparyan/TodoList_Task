@@ -1,12 +1,12 @@
 import React from 'react'
 import { ITask } from '../../../features/section/interfacesSectionSlice'
-import Item from '../item/Task'
+import Item from '../task/Task'
 import { useDrop } from 'react-dnd'
 import { ISendTask, Iitem } from './interfcesColumn'
 import { useAppDispatch } from '../../../app/hooks'
 
 import {
-  addSectionWithIndex,
+  addTaskWithIndex,
   removeTaskWithIndex,
   removeSectionWithIndex,
 } from '../../../features/section/sectionSlice'
@@ -23,7 +23,7 @@ const Column: React.FC<Iitem> = ({ items, section, index }) => {
   }))
   const addTaskToSection = (item: ISendTask) => {
     dispatch(
-      addSectionWithIndex({
+      addTaskWithIndex({
         task: item.task,
         currentSectionName: item.sectionName,
         sectionName: section,
@@ -51,7 +51,11 @@ const Column: React.FC<Iitem> = ({ items, section, index }) => {
       <h4 className="h3">{section}</h4>
       <hr />
       {items.map((item, ind) => {
-        return <Item task={item} ind={ind} sectionName={section} />
+        return (
+          <div key={ind}>
+            <Item task={item} ind={ind} sectionName={section} />
+          </div>
+        )
       })}
     </div>
   )
