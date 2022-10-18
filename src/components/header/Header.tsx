@@ -14,7 +14,7 @@ const Header: React.FC<IHeader> = ({ setActive }) => {
           setActive('section')
         }}
       >
-        Add Section
+        Add Day
       </button>
       {sectionCount > 0 && (
         <button
@@ -22,7 +22,7 @@ const Header: React.FC<IHeader> = ({ setActive }) => {
             setActive('task')
           }}
         >
-          Add Task
+          Add Event
         </button>
       )}
       <hr />

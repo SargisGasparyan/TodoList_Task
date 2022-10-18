@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { selectCount } from '../../features/section/sectionSlice'
 import { useAppSelector } from '../../app/hooks'
 import Column from './column/Column'
-import './trelloContens.css'
-const TrelloContent: React.FC = () => {
+import './todoList.css'
+const TodoList: React.FC = () => {
   const state = useAppSelector(selectCount)
   const allsections = state.section.sections
 
@@ -20,4 +20,4 @@ const TrelloContent: React.FC = () => {
   )
 }
 
-export default TrelloContent
+export default TodoList

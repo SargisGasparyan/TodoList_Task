@@ -4,7 +4,7 @@ import React from 'react'
 import './App.css'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
-import TrelloContent from './components/trelloContent/trelloContent'
+import TodoList from './components/todoList/todoList'
 
 function App() {
   const [modalActiveTask, setModalActiveTask] = React.useState(false)
@@ -24,9 +24,10 @@ function App() {
 
   return (
     <div className="App">
+      <h1 className='headerClass'>My Todo List</h1>
       <DndProvider backend={HTML5Backend}>
         <Header setActive={handleActive} />
-        <TrelloContent />
+        <TodoList />
         <Modal
           inputValue={inputValue}
           setInputValue={handleSetInputValue}

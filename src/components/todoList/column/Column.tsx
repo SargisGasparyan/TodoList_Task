@@ -6,9 +6,9 @@ import { ISendTask, Iitem } from './interfcesColumn'
 import { useAppDispatch } from '../../../app/hooks'
 
 import {
-  addTaskWithIndex,
-  removeTaskWithIndex,
-  removeSectionWithIndex,
+  addEventWithIndex,
+  removeEventWithIndex,
+  removeDayWithIndex,
 } from '../../../features/section/sectionSlice'
 import './column.css'
 
@@ -16,21 +16,21 @@ const Column: React.FC<Iitem> = ({ items, section, index }) => {
   const dispatch = useAppDispatch()
   const [{ isOver }, dropRef] = useDrop(() => ({
     accept: 'task',
-    drop: (item: ISendTask) => addTaskToSection(item),
+    drop: (item: ISendTask) => addEventToSection(item),
     collect: (monitor) => ({
       isOver: !!monitor.isOver(),
     }),
   }))
-  const addTaskToSection = (item: ISendTask) => {
+  const addEventToSection = (item: ISendTask) => {
     dispatch(
-      addTaskWithIndex({
+      addEventWithIndex({
         task: item.task,
         currentSectionName: item.sectionName,
         sectionName: section,
       }),
     )
     dispatch(
-      removeTaskWithIndex({
+      removeEventWithIndex({
         task: item.task,
         currentSectionName: item.sectionName,
       }),
@@ -38,7 +38,7 @@ const Column: React.FC<Iitem> = ({ items, section, index }) => {
   }
   const handleRemoveSection = () => {
     dispatch(
-      removeSectionWithIndex({
+      removeDayWithIndex({
         currentSectionName: section,
       }),
     )

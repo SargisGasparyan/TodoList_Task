@@ -3,8 +3,8 @@ import React from 'react'
 import { useAppDispatch } from '../../app/hooks'
 import { IModal } from './InterfacesModal'
 import {
-  addSection,
-  addTask,
+  addDay,
+  addEvent,
   selectCount,
 } from '../../features/section/sectionSlice'
 
@@ -50,13 +50,13 @@ const Modal: React.FC<IModal> = ({
 
   const handleKeyboardFunc = (val: string) => {
     if (val === 'section') {
-      inputValue !== '' && dispatch(addSection({ title: inputValue }))
+      inputValue !== '' && dispatch(addDay({ title: inputValue }))
       setInputValue('')
       setDescription('')
       setActive('section', false)
     } else if (val === 'task') {
       inputValue !== '' &&
-        dispatch(addTask({ title: inputValue, description: description }))
+        dispatch(addEvent({ title: inputValue, description: description }))
       setInputValue('')
       setDescription('')
       setActive('task', false)
@@ -80,7 +80,7 @@ const Modal: React.FC<IModal> = ({
                     id="first_name"
                     type="text"
                   />
-                  <label className="active">Selection Name</label>
+                  <label className="active">Write name</label>
                 </div>
                 {validSection && inputValue !== '' && (
                   <div>
@@ -98,7 +98,7 @@ const Modal: React.FC<IModal> = ({
               type="submit"
               name="action"
             >
-              Add section
+              Add Day
               <i className="material-icons right"></i>
             </button>
           </div>
@@ -123,7 +123,7 @@ const Modal: React.FC<IModal> = ({
                 id=""
                 type="text"
               />
-              <label className="active">Task Name</label>
+              <label className="active">Action name</label>
             </div>
             <div className="input-field col s6">
               {validTaskDescription && description !== '' && (
@@ -142,7 +142,7 @@ const Modal: React.FC<IModal> = ({
                 type="text"
               />
 
-              <label className="active">Task Descripion</label>
+              <label className="active">Action descripion</label>
             </div>
             <button
               disabled={
@@ -155,7 +155,7 @@ const Modal: React.FC<IModal> = ({
               type="submit"
               name="action"
             >
-              Add task
+              Add Event
               <i className="material-icons right"></i>
             </button>
           </div>

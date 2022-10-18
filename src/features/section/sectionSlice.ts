@@ -11,20 +11,20 @@ export const sectionSlice = createSlice({
   initialState,
   reducers: {
     //reducers for sections
-    addSection: (state: ISectionState, action: IPayload) => {
+    addDay: (state: ISectionState, action: IPayload) => {
       state.sections = [
         ...state.sections,
         { section: action.payload.title, tasks: [] },
       ]
     },
-    removeSectionWithIndex: (state: ISectionState, action: IPayload) => {
+    removeDayWithIndex: (state: ISectionState, action: IPayload) => {
       state.sections = state.sections.filter(
         (section) => section.section !== action.payload.currentSectionName,
       )
     },
 
     //reducers for tasks
-    addTask: (state: ISectionState, action: IPayload) => {
+    addEvent: (state: ISectionState, action: IPayload) => {
       state.sections = state.sections.map((section, index) =>
         index === 0
           ? {
@@ -40,7 +40,7 @@ export const sectionSlice = createSlice({
           : { ...section },
       )
     },
-    addTaskWithIndex: (state: ISectionState, action: IPayload) => {
+    addEventWithIndex: (state: ISectionState, action: IPayload) => {
       state.sections = state.sections.map((section, index) =>
         section.section === action.payload.sectionName
           ? {
@@ -56,7 +56,7 @@ export const sectionSlice = createSlice({
           : { ...section },
       )
     },
-    removeTaskWithIndex: (state: ISectionState, action: IPayload) => {
+    removeEventWithIndex: (state: ISectionState, action: IPayload) => {
       state.sections = state.sections.map((section, index) =>
         section.section === action.payload.currentSectionName
           ? {
@@ -70,7 +70,7 @@ export const sectionSlice = createSlice({
     },
 
     //reducers for edit task
-    changeTitleTask: (state: ISectionState, action: IPayload) => {
+    changeTitleEvent: (state: ISectionState, action: IPayload) => {
       state.sections = state.sections.map((section, index) =>
         section.section === action.payload.sectionName
           ? {
@@ -88,12 +88,12 @@ export const sectionSlice = createSlice({
 })
 
 export const {
-  addSection,
-  addTask,
-  addTaskWithIndex,
-  removeTaskWithIndex,
-  removeSectionWithIndex,
-  changeTitleTask,
+  addDay,
+  addEvent,
+  addEventWithIndex,
+  removeEventWithIndex,
+  removeDayWithIndex,
+  changeTitleEvent,
 } = sectionSlice.actions
 
 export const selectCount = (state: RootState) => state

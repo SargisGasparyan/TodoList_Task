@@ -4,8 +4,8 @@ import { useDrag } from 'react-dnd'
 import { Itask } from './interfacesTask'
 import { useAppDispatch } from '../../../app/hooks'
 import {
-  removeTaskWithIndex,
-  changeTitleTask,
+  removeEventWithIndex,
+  changeTitleEvent,
 } from '../../../features/section/sectionSlice'
 
 const Task: React.FC<Itask> = ({ task, ind, sectionName }) => {
@@ -21,7 +21,7 @@ const Task: React.FC<Itask> = ({ task, ind, sectionName }) => {
   }))
   const handleRemoveTask = () => {
     dispatch(
-      removeTaskWithIndex({
+      removeEventWithIndex({
         task: task,
         currentSectionName: sectionName,
       }),
@@ -35,7 +35,7 @@ const Task: React.FC<Itask> = ({ task, ind, sectionName }) => {
   }
   const sendTitle = () => {
     dispatch(
-      changeTitleTask({
+      changeTitleEvent({
         task: task,
         sectionName: sectionName,
         newTitle: titleText,
